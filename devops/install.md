@@ -28,6 +28,11 @@ apt-get install php5-sqlite
 # Install the required library to drop tables using artisan migrate
 copmposer require doctrine/dbal
 
+# Install Html
+copmposer require illuminate/html
+
+
+
 # Set the chmod for bootstrap and maybe storage
 find app/storage -type d -exec chmod -vc 777 {} \;
 find app/storage -type f -exec chmod -vc 777 {} \;
