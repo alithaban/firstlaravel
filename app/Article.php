@@ -12,6 +12,7 @@ class Article extends Model
     	'title'
     	,'body'
     	,'published_at'
+    	,'user_id'
     ];
     
     protected $dates = ['published_at'];
@@ -26,5 +27,9 @@ class Article extends Model
     
     public function setPublishedAtAttribute($date){
     	$this->attributes['published_at'] = Carbon::parse($date);
+    }
+    
+    public function writer() {
+    	return $this->belongsTo('App\User');
     }
 }
