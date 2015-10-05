@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Article;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Request;
-use Carbon\Carbon;
+use App\Http\Requests\CreateArticleRequest;
 
 class ArticlesController extends Controller
 {
     //
     public	function index(){
-    	$articles = Article::latest('published_at')->unpublished()->get();
+    	$articles = Article::latest('published_at')->published()->get();
     	
 		return view('articles.index',compact('articles'));
     }
@@ -27,8 +26,9 @@ class ArticlesController extends Controller
 		return view('articles.create');
 	}
 	
-	public function store(){		
-		Article::create(Request::all());
+	public function store(Request $request){
+		
+		Article::create($request->all());
 		
 		return redirect('articles');
 	}
